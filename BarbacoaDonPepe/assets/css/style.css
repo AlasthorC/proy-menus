@@ -1,0 +1,114 @@
+@font-face {
+    font-family: Colus;
+    src: url('Colus-Regular.eot');
+    src: url('Colus-Regular.eot?#iefix') format('embedded-opentype'),
+    url('Colus-Regular.woff2') format('woff2'),
+    url('Colus-Regular.woff') format('woff'),
+}
+@font-face {
+    font-family: Minion;
+    src: url('MinionPro-Medium.woff2') format('woff2'),
+    url('MinionPro-Medium.woff') format('woff'),
+}
+*{
+    color:#ffffff;
+    font-family: Minion, serif;
+    font-size: 1em;
+}
+h1, h2, h3 {
+    font-family: Colus, serif;
+}
+header, footer{
+    width: 100vw;
+    height: 100vh;
+}
+header{
+    background-image: url(../img/fondo-tacos.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+}
+.logo{
+    display: block;
+    width: 60vw;
+    height: 50vh;
+    background-image: url(../img/logo.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -999999px;
+}
+.cintillo{
+    background-image: url(../img/bglogo.png);
+    background-size:150%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#menu{
+    background-image: url(../img/bg-gral.png);
+    background-size: 100%;
+    background-attachment: fixed;
+    padding: 5vh 0;
+}
+
+footer{
+    background-image: url(../img/maguey.png);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 60vh;
+    font-style: italic;
+}
+.maguey{
+    display: inline-block;
+    width: 72
+    px;
+    height: 72
+    px;
+    background-image: url(../img/icono.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -999999px;
+}
+#end .row{
+    background: #1D1D1B;
+}
+a{color: #ffffff; text-decoration: none;}
+.fa-solid{font-size: 2em;}
+
+.card{ color: #ffffff; }
+.card.prime{
+    background-color: #D03842;
+    border-radius: 3px 3px 30px 3px;
+    background-image: url(../img/card01-bg.png);
+    background-position: top center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 20%;
+}
+.card.other{
+    background-color: #A3195B;
+    border-radius: 3px 30px 3px 3px;
+    background-image: url(../img/card02-bg.png);
+    background-position: top left;
+    background-size: 13%;
+    background-repeat: repeat-y;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 15px;
+}
+h2{
+    font-size: 2.3em;
+    line-height: 0.8em;
+}
+h2 >span{
+    padding-top: 10px;
+    font-size: 0.7em;
+}
+h3{font-size: 1.5em;}
+.precios{
+    font-size: 1.2em;
+}

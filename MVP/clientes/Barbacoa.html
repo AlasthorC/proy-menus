@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aparta tu comida</title>
+  <style>
+     .oculto{ display:none;}
+     .visible{ display:block;}
+     #previewPedido{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    /* display:flex; */
+    justify-content:center;
+    align-items:center;}
+    .papel{
+      background:#fff;
+      padding:1rem;
+      border-radius:1rem;
+      max-width:400px;
+      margin:1rem auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Aparta tu comida</h1>
+
+<form id="pedidoForm">
+
+  <label>Nombre</label>
+  <input type="text" id="nombre" required>
+  <br>
+
+  <label>Teléfono</label>
+  <input type="tel" id="telefono" required>
+  <br>
+
+  <label>¿Para cuándo?</label>
+  <input type="time" id="hora" required>
+  <br>
+
+  <label>
+    <input type="radio" name="tipo" value="Llevar" checked>
+    Para llevar
+  </label>
+
+  <label>
+    <input type="radio" name="tipo" value="Comer ahí">
+    Comer ahí
+  </label>
+
+  <br><br>
+
+  <!-- PRODUCTOS -->
+  <label>Kilos de barbacoa</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="kg de barbacoa" value="0" min="0">
+  <button type="button" class="mas">+</button>
+
+  <br><br>
+
+  <label>Consomés</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="consomés" value="0" min="0">
+  <button type="button" class="mas">+</button>
+
+  <br><br>
+
+  <!-- CAMBIO IMPORTANTE -->
+  <button type="submit">
+    Revisar pedido
+  </button>
+
+</form>
+
+<!-- TICKET -->
+<div id="previewPedido" class="oculto">
+  <div class="papel">
+    <h2>🍲 Revisa tu pedido</h2>
+
+  <p id="folioView"></p>
+  <p id="resumenPedido"></p>
+  <button type="button" id="editarPedido">
+    ← Editar pedido
+  </button>
+  <button type="button" id="btnWhatsApp">
+    Enviar a WhatsApp
+  </button>
+  </div>
+</div>
+
+<!-- JS de + y - -->
+<script>
+document.querySelectorAll(".mas").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = btn.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+  });
+});
+
+document.querySelectorAll(".menos").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = btn.nextElementSibling;
+    const val = parseInt(input.value);
+    if (val > 0) input.value = val - 1;
+  });
+});
+</script>
+
+<!-- TU MOTOR -->
+<script src="../core/pedidos.js"></script>
+
+</body>
+</html>

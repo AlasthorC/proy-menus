@@ -201,6 +201,28 @@ document
         '_blank'
       );
 
+      setTimeout(() => {
+
+    document.getElementById('pedidoForm').reset();
+
+    document
+      .getElementById('previewPedido')
+      .classList.remove('visible');
+
+    document
+      .getElementById('previewPedido')
+      .classList.add('oculto');
+
+    document
+      .getElementById('pedidoForm')
+      .classList.remove('oculto');
+
+    document
+      .getElementById('pedidoForm')
+      .classList.add('visible');
+
+}, 500);
+
     }
 
 });

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postres Doña Mimis</title>
+  <style>
+     .oculto{ display:none;}
+     .visible{ display:block;}
+     #previewPedido{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    /* display:flex; */
+    justify-content:center;
+    align-items:center;}
+    .papel{
+      background:#fff;
+      padding:1rem;
+      border-radius:1rem;
+      max-width:400px;
+      margin:1rem auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Postres Doña Mimis</h1>
+<p>Hola vecino! 🌟 <br> ¡Haz tu pedido ahora! Solo llena el formulario.<br>Escoge tus postres favoritos, selecciona un horario de entrega.<br>Espera tu pedido y ¡a disfrutar!.</p>
+
+<form id="pedidoForm">
+
+  <label>¿A nombre de quien va el pedido?</label> <br>
+  <input type="text" id="nombre" required>
+  <br>
+
+  <label>¿Cuál es tu número de teléfono?</label><br>
+  <input type="tel" id="telefono" required>
+  <br>
+
+  <label>¿En que horario deseas recibir tu pedido?</label><br>
+  <select id="hora" required>
+    <option value="">Selecciona una horario</option>
+    <option value="8:00">10:00 am</option>
+    <option value="8:30">1:30 pm</option>
+    <option value="8:30">5:00 pm</option>
+    <select>
+  <!-- <br>
+  <label>
+    <input type="radio" name="tipo" value="Llevar" checked>
+    Para llevar
+  </label>
+
+  <label>
+    <input type="radio" name="tipo" value="Comer ahí">
+    Comer ahí
+  </label> -->
+  <h2>Escoge tus postres favoritos</h2>
+  <!-- PRODUCTOS -->
+  <h3>Gelatinas</h3>
+  <label>Fresa</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Gelatina de Fresa" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Limón</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Gelatina de Limón" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Uva</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Gelatina de Uva" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Piña</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Gelatina de Piña" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Mosaico</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Gelatina de Mosaico" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Flan</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Flan" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br><br>
+
+  <h3>Con fruta</h3>
+  <label>Pay de Limón</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Pay de Limón" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Pay de Mango</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Pay de Mango" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Fresas con crema</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Fresas con crema" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br><br>
+
+  <h3>Otros</h3>
+  <label>Huevito dulce</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Huevito dulce" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  <label>Hot cakes</label>
+  <button type="button" class="menos">-</button>
+  <input type="number" class="producto" data-nombre="Hot cakes" value="0" min="0">
+  <button type="button" class="mas">+</button>
+  <br>
+  
+<br>
+  <!-- CAMBIO IMPORTANTE -->
+  <button type="submit">
+    Revisar pedido
+  </button>
+
+</form>
+
+<!-- TICKET -->
+<div id="previewPedido" class="oculto">
+  <div class="papel">
+    <h2>🍲 Revisa tu pedido</h2>
+
+  <p id="folioView"></p>
+  <p id="resumenPedido"></p>
+  <button type="button" id="editarPedido">
+    ← Editar pedido
+  </button>
+  <button type="button" id="btnWhatsApp">
+    Enviar a WhatsApp
+  </button>
+  </div>
+</div>
+
+<!-- JS de + y - -->
+<script>
+document.querySelectorAll(".mas").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = btn.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+  });
+});
+
+document.querySelectorAll(".menos").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = btn.nextElementSibling;
+    const val = parseInt(input.value);
+    if (val > 0) input.value = val - 1;
+  });
+});
+</script>
+
+<!-- TU MOTOR -->
+<script src="pedidos-postres.js"></script>
+
+</body>
+</html>

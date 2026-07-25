@@ -157,7 +157,7 @@ Gracias por tu preferencia.
       `
       <strong>Cliente:</strong> ${nombre}<br>
       <strong>Teléfono:</strong> ${telefono}<br>
-      <strong>Hora:</strong> ${hora}
+      <strong>Horario:</strong> ${hora}
 
       <hr>
 

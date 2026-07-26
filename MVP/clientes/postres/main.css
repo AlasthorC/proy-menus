@@ -1,4 +1,184 @@
-.oculto{ display:none;}
-.visible{ display:block;}
-#previewPedido{ position:fixed; inset:0; background:rgba(0,0,0,.6);/* display:flex; */ justify-content:center; align-items:center;}
-.papel{ background:#fff; padding:1rem; border-radius:1rem; max-width:400px; margin:1rem auto; }
+/* ==========================================
+   TEMA: Doña Mimis (Postres)
+   ========================================== */
+:root {
+    /* Tipografias */
+    --body-font: "Nunito", sans-serif;
+    --input-font: "Sniglet", cursive;
+    --button-font: bold "Sniglet", cursive;
+    --font-size-1: 1rem;
+    --font-size-2: 1.25rem;
+    --font-size-3: 1.5rem;
+    --font-size-4: 0.8rem;
+    /* Colores */
+    --color-01: #1d1d1b; /* black  */
+    --color-02: #975d22; /* brown  */
+    --color-03: #573615; /* brown2 */
+    --color-04: #ec9224; /* accent */
+    --color-05: #f7eaca; /* white  */
+    --color-06: #f9db9d; /* card-bg  */
+    --color-07: rgba(247, 234, 202, 0.5); /* white opacity   */
+    --color-08: rgba(32, 18, 2, 0.85); /* white  */
+    --textura-01: url("img/bg-pattern.png") repeat; /* textura */
+    /* Espacios */
+    --space-01: 0.25rem;
+    --space-02: 0.5rem;
+    --space-03: 1rem;
+    --space-04: 2rem;
+    --space-05: 4rem;
+}
+/*// Generales MVP///*/
+.oculto {
+    display: none;
+}
+.visible {
+    display: block;
+}
+
+#previewPedido {
+    position: fixed;
+    inset: 0;
+    background: var(--color-08); 
+    backdrop-filter: blur(10px);
+    /* display:flex; */
+    justify-content: center;
+    align-items: center;
+}
+.papel {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    max-width: 350px;
+    margin: 1rem auto;
+}
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||   Main content   |||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+body {
+    background: var(--textura-01);
+    padding: var(--space-04) var(--space-03);
+    font-family: var(--body-font);
+    color: var(--color-01);
+}
+.logo {
+    text-indent: -99999px;
+    background: url("img/logo-inline.svg") no-repeat center;
+    background-size: contain;
+    display: block;
+    width: 300px;
+    height: 130px;
+    margin: 0 auto;
+}
+h2{ 
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-size-3);
+    height: 80px;
+}
+h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url("img/logo-isotipo.svg") no-repeat center;
+    background-size: contain;
+    margin: 0.5rem auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+h2::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url("img/logo-isotipo.svg") no-repeat center;
+    background-size: contain;
+    margin: 0.5rem auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||||||||||| Cards ||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+.mp-card {
+    background: var(--color-06);
+    border-radius: 0 0 var(--space-03) var(--space-03);
+    border-top: 2px solid var(--color-02);
+    padding: var(--space-03);
+    margin-bottom: var(--space-04);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||||||Inputs|||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+.mp-input, input:-internal-autofill-selected {
+    width: 100%;
+    font-family: var(--input-font);
+    padding: var(--space-01) var(--space-02);
+    border: 2px solid var(--color-02);
+    border-radius: var(--space-01);
+    margin-bottom: var(--space-02);
+    background-color: var(--color-05) !important;
+    color: var(--color-02) !important;
+}
+.mp-label {
+    font-family: var(--input-font);
+    color: var(--color-03);
+}
+.mp-input-num {
+    width: 50px;
+    text-align: center;
+    font-family: var(--input-font);
+    padding: var(--space-01) var(--space-02);
+    border: none;
+    border-top: 2px solid var(--color-02);
+    border-bottom: 2px solid var(--color-02);
+    background: var(--color-07);
+    color: var(--color-02);
+}
+.mp-btn {
+    background-color: var(--color-02);
+    width: 100%;
+    height: 48px;
+    border: solid 2px var(--color-02);
+    border-radius: var(--space-02);
+    color: var(--color-05);
+    font-size: var(--font-size-2);
+    cursor: pointer;
+}
+.mp-btn-line {
+    background-color: transparent;
+    width: 100%;
+    height: 48px;
+    border: solid 2px var(--color-02);
+    border-radius: var(--space-02);
+    color: var(--color-02);
+    font-size: var(--font-size-2);
+    cursor: pointer;
+    margin-bottom: var(--space-02);
+}
+.mp-btnS {
+    background-color: var(--color-02);
+    width: 50px;
+    height: 48px;
+    border: solid 2px var(--color-02);
+    border-radius: var(--space-01) 0 0 var(--space-01);
+    color: var(--color-05);
+    font-size: var(--font-size-2);
+    cursor: pointer;
+}
+.mp-btnE {
+    background-color: var(--color-02);
+    width: 50px;
+    height: 48px;
+    border: solid 2px var(--color-02);
+    border-radius: 0 var(--space-01) var(--space-01) 0;
+    color: var(--color-05);
+    font-size: var(--font-size-2);
+    cursor: pointer;
+}

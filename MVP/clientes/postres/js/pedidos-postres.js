@@ -13,27 +13,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let htmlMenu = '';
 
   DATOS_CLIENTE.categorias.forEach(cat => {
-    htmlMenu += `<h3>${cat.nombre}</h3>`;
+        htmlMenu += `<div class="mp-card">
+        <h3 class="text-center">${cat.nombre}</h3>`;
     
     cat.productos.forEach(prod => {
       // Si el producto tiene nombreCorto lo usa en el label, si no, usa el normal
       const textoMostrar = prod.nombreCorto || prod.nombre;
       
       htmlMenu += `
-        <div class="fila-producto" style="margin-bottom: 10px;">
-          <label>${textoMostrar} <strong>(${DATOS_CLIENTE.moneda}${prod.precio})</strong></label><br>
-          <button type="button" class="menos" data-id="${prod.id}">-</button>
-          <input type="number" 
-                 class="producto" 
-                 id="input-${prod.id}" 
-                 data-nombre="${prod.nombre}" 
-                 data-precio="${prod.precio}" 
-                 value="0" min="0" readonly>
-          <button type="button" class="mas" data-id="${prod.id}">+</button>
+        <div class="fila-producto row" style="margin-bottom: 10px;">
+          <div class="col">
+            <label class="mp-label">${textoMostrar} <strong><br>(${DATOS_CLIENTE.moneda}${prod.precio})</strong></label><br>
+          </div>
+          <div class="col-5 d-flex">
+            <button type="button" class="menos mp-btnS" data-id="${prod.id}">-</button>
+            <input type="number" 
+                  class="producto mp-input-num" 
+                  id="input-${prod.id}" 
+                  data-nombre="${prod.nombre}" 
+                  data-precio="${prod.precio}" 
+                  value="0" min="0" readonly>
+            <button type="button" class="mas mp-btnE" data-id="${prod.id}">+</button>
+          </div>
         </div>
       `;
     });
-    htmlMenu += `<br>`;
+    htmlMenu += `<br></div>`;
   });
 
   contenedor.innerHTML = htmlMenu;
@@ -64,6 +69,7 @@ document
 
     const nombre = document.getElementById('nombre').value.trim();
     const telefono = document.getElementById('telefono').value.trim();
+    const direccion = document.getElementById('direccion').value.trim();
     const hora = document.getElementById('hora').value;
 
     function generarFolio(nombre, telefono) {
@@ -105,7 +111,8 @@ document
 Folio: ${folio}
 Cliente: ${nombre}
 Teléfono: ${telefono}
-Hora solicitada: ${hora}
+Dirección: ${direccion}
+Horario: ${hora}
 
 --------------------------------
 PEDIDO
@@ -118,11 +125,12 @@ Gracias por tu preferencia.`;
     //--------------------------------------------------
     // LLENAR PREVIEW (Con Total a Pagar visible)
     //--------------------------------------------------
-    document.getElementById('folioView').innerHTML = `<strong>Folio:</strong> ${folio}`;
+    document.getElementById('folioView').innerHTML = `<strong>Folio:</strong> <span style="color:red">${folio}</span>`;
 
     document.getElementById('resumenPedido').innerHTML = `
       <strong>Cliente:</strong> ${nombre}<br>
       <strong>Teléfono:</strong> ${telefono}<br>
+      <strong>Dirección:</strong> ${direccion}<br>
       <strong>Horario:</strong> ${hora}
       <hr>
       <pre>${pedido}</pre>

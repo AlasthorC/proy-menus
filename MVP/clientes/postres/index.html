@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Postres Doña Mimis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sniglet&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="main.css">
@@ -11,61 +14,67 @@
 
 <body>
 
-<h1>Postres Doña Mimis</h1>
-<p>Hola vecino! 🌟 <br> ¡Haz tu pedido ahora! Solo llena el formulario.<br>Escoge tus postres favoritos, selecciona un horario de entrega.<br>Espera tu pedido y ¡a disfrutar!.</p>
+<h1 class="logo">Postres Doña Mimis</h1>
+<p class="text-center">Hola vecino! 🌟 <br> ¡Haz tu pedido ahora! Solo llena el formulario.<br>Escoge tus postres favorito<br>Selecciona un horario de entrega.<br>Espera tu pedido y ¡a disfrutar!.</p>
 
 <form id="pedidoForm">
 
-  <label>¿A nombre de quien va el pedido?</label> <br>
-  <input type="text" id="nombre" required>
+  <div class="mp-card">
+    <label class="mp-label">¿A nombre de quien va el pedido?</label> <br>
+    <input type="text" id="nombre" class="mp-input" placeholder="Tu nombre" required>
   <br>
 
-  <label>¿Cuál es tu número de teléfono?</label><br>
-  <input type="tel" id="telefono" required>
+    <label class="mp-label">¿Cuál es tu número de teléfono?</label><br>
+    <input type="tel" id="telefono" class="mp-input" placeholder="10 dígitos" required>
   <br>
 
-  <label>¿En que horario deseas recibir tu pedido?</label><br>
-  <select id="hora" required>
-    <option value="">Selecciona una horario</option>
-    <option value="10:00">10:00 am</option>
-    <option value="1:30">1:30 pm</option>
-    <option value="5:00">5:00 pm</option>
-  </select>
+    <label class="mp-label">¿A dónde te lo llevo?</label><br>
+    <input type="text" id="direccion" class="mp-input" placeholder="Calle y número" required>
+  <br>
 
-  <h2>Escoge tus postres favoritos</h2>
+    <label class="mp-label">¿En que horario deseas recibir tu pedido?</label><br>
+    <select id="hora" class="mp-input"  required>
+      <option value="">Selecciona un horario</option>
+      <option value="10:00">10:00 am</option>
+      <option value="1:30">1:30 pm</option>
+      <option value="5:00">5:00 pm</option>
+    </select>
+  </div>
+
+  <h2>Escoge tus postres<br>favoritos</h2>
   
   <!-- INYECCIÓN DE MENÚ -->  
   <div id="contenedor-productos">
     <!-- Aquí caen los productos automáticamente desde menu.js -->
   </div>
-  <br>
-
   <!-- CAMBIO IMPORTANTE -->
-  <button type="submit">
+  <button type="submit" class="mp-btn">
     Revisar pedido
   </button>
 
 </form>
 
 <!-- TICKET / COMANDA -->
-<div id="previewPedido" class="oculto">
-  <div class="papel">
-    <h2>🥞 Revisa tu pedido 🥞</h2>
-    <p>Si todo esta correcto, haz clic en "Enviar a WhatsApp", te confirmaremos el pedido.</p>
-    <p id="folioView"></p>
+<!-- <div id="previewPedido" class="oculto"> -->
+<div class="oculto" id="previewPedido">
+  <div class="papel mp-card">
+    <img src="img/logo-isotipo.svg" alt="Logo" class="d-block mx-auto mb-3">
+    <h3 class="text-center">🥞 Revisa tu pedido 🥞</h3>
+    <p class="text-center">Si todo esta correcto, haz clic en "Enviar a WhatsApp", te confirmaremos el pedido.</p>
+    <p id="folioView" class="mb-0"></p>
     <p id="resumenPedido"></p>
-    <button type="button" id="editarPedido">
+    <button type="button" id="editarPedido" class="mp-btn-line">
       ← Editar pedido
     </button>
-    <button type="button" id="btnWhatsApp">
+    <button type="button" id="btnWhatsApp" class="mp-btn">
       Enviar a WhatsApp
     </button>
   </div>
 </div>
 
 <!-- TU MOTOR -->
-<script src="menu.js"></script>
-<script src="pedidos-postres.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/pedidos-postres.js"></script>
 
 </body>
 </html>

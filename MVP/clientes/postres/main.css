@@ -1,0 +1,4 @@
+.oculto{ display:none;}
+.visible{ display:block;}
+#previewPedido{ position:fixed; inset:0; background:rgba(0,0,0,.6);/* display:flex; */ justify-content:center; align-items:center;}
+.papel{ background:#fff; padding:1rem; border-radius:1rem; max-width:400px; margin:1rem auto; }

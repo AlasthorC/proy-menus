@@ -1,256 +1,163 @@
 // =====================================================
 // WERO ENCARGOS - MOTOR DE PEDIDOS
-// MVP v0.1
+// MVP v0.2
 // =====================================================
 
-// Aquí guardaremos la URL de WhatsApp hasta que el
-// cliente confirme el pedido.
+// =====================================================
+// 1. RENDERIZAR MENÚ DINÁMICO AL CARGAR LA PÁGINA
+// =====================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const contenedor = document.getElementById('contenedor-productos');
+  if (!contenedor || typeof DATOS_CLIENTE === 'undefined') return;
+
+  let htmlMenu = '';
+
+  DATOS_CLIENTE.categorias.forEach(cat => {
+    htmlMenu += `<h3>${cat.nombre}</h3>`;
+    
+    cat.productos.forEach(prod => {
+      // Si el producto tiene nombreCorto lo usa en el label, si no, usa el normal
+      const textoMostrar = prod.nombreCorto || prod.nombre;
+      
+      htmlMenu += `
+        <div class="fila-producto" style="margin-bottom: 10px;">
+          <label>${textoMostrar} <strong>(${DATOS_CLIENTE.moneda}${prod.precio})</strong></label><br>
+          <button type="button" class="menos" data-id="${prod.id}">-</button>
+          <input type="number" 
+                 class="producto" 
+                 id="input-${prod.id}" 
+                 data-nombre="${prod.nombre}" 
+                 data-precio="${prod.precio}" 
+                 value="0" min="0" readonly>
+          <button type="button" class="mas" data-id="${prod.id}">+</button>
+        </div>
+      `;
+    });
+    htmlMenu += `<br>`;
+  });
+
+  contenedor.innerHTML = htmlMenu;
+});
+
+// =====================================================
+// 2. CONTROL DE BOTONES + Y - (DELEGACIÓN DE EVENTOS)
+// =====================================================
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('mas')) {
+    const input = e.target.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+  }
+  
+  if (e.target.classList.contains('menos')) {
+    const input = e.target.nextElementSibling;
+    const val = parseInt(input.value);
+    if (val > 0) input.value = val - 1;
+  }
+});
+
 let urlWhatsApp = '';
 
 document
   .getElementById('pedidoForm')
   .addEventListener('submit', function (e) {
-
-    // Evita que el formulario recargue la página
     e.preventDefault();
 
-    //--------------------------------------------------
-    // DATOS DEL CLIENTE
-    //--------------------------------------------------
-
-    const nombre =
-      document
-        .getElementById('nombre')
-        .value
-        .trim();
-
-    const telefono =
-      document
-        .getElementById('telefono')
-        .value
-        .trim();
-
-    const hora =
-      document
-        .getElementById('hora')
-        .value;
-
-    // const tipo =
-    //   document
-    //     .querySelector('input[name="tipo"]:checked')
-    //     .value;
-
-    //--------------------------------------------------
-    // GENERAR FOLIO
-    //--------------------------------------------------
+    const nombre = document.getElementById('nombre').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const hora = document.getElementById('hora').value;
 
     function generarFolio(nombre, telefono) {
-
-      const inicial =
-        nombre
-          .charAt(0)
-          .toUpperCase();
-
-      const ultimos4 =
-        telefono.slice(-4);
-
+      const inicial = nombre.charAt(0).toUpperCase();
+      const ultimos4 = telefono.slice(-4);
       return `${inicial}-${ultimos4}`;
     }
 
-    const folio =
-      generarFolio(nombre, telefono);
-
-    //--------------------------------------------------
-    // ARMAR LISTA DE PRODUCTOS
-    //--------------------------------------------------
-
-    const productos =
-      document.querySelectorAll('.producto');
+    const folio = generarFolio(nombre, telefono);
+    const productos = document.querySelectorAll('.producto');
 
     let pedido = '';
+    let totalCobrar = 0;
 
     productos.forEach(input => {
-
-      const cantidad =
-        parseInt(input.value) || 0;
-
-      const nombreProducto =
-        input.dataset.nombre;
+      const cantidad = parseInt(input.value) || 0;
+      const nombreProducto = input.dataset.nombre;
+      const precioUnitario = parseFloat(input.dataset.precio) || 0;
 
       if (cantidad > 0) {
-
-        pedido +=
-          `• ${cantidad} ${nombreProducto}\n`;
-
+        pedido += `• ${cantidad} ${nombreProducto}\n`;
+        totalCobrar += (cantidad * precioUnitario);
       }
-
     });
 
-    //--------------------------------------------------
-    // VALIDAR PEDIDO
-    //--------------------------------------------------
-
     if (!pedido) {
-
-      alert(
-        'Selecciona al menos un producto.'
-      );
-
+      alert('Selecciona al menos un producto.');
       return;
     }
 
     //--------------------------------------------------
-    // CONFIGURACIÓN
+    // MENSAJE PARA WHATSAPP (Usando datos de menu.js)
     //--------------------------------------------------
-
-    const config = {
-
-      titulo: 'NUEVO PEDIDO',
-      numeroWhatsApp: '525513694267'
-
-    };
-
-    //--------------------------------------------------
-    // MENSAJE PARA WHATSAPP
-    //--------------------------------------------------
-
+    // si agregas esto al final del mensaje, se verá el total de la compra en el chat de WhatsApp:
+    // \nTotal a pagar: ${DATOS_CLIENTE.moneda}${totalCobrar}
     const mensaje =
-`${config.titulo}
+`${DATOS_CLIENTE.tituloPedido}
 
 Folio: ${folio}
-
 Cliente: ${nombre}
-
 Teléfono: ${telefono}
-
 Hora solicitada: ${hora}
 
 --------------------------------
-
 PEDIDO
+${pedido}--------------------------------
 
-${pedido}
+Gracias por tu preferencia.`;
 
-Gracias por tu preferencia.
-`;
-
-    //--------------------------------------------------
-    // GENERAR URL
-    //--------------------------------------------------
-
-    urlWhatsApp =
-      `https://wa.me/${config.numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    urlWhatsApp = `https://wa.me/${DATOS_CLIENTE.numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
     //--------------------------------------------------
-    // LLENAR PREVIEW
+    // LLENAR PREVIEW (Con Total a Pagar visible)
     //--------------------------------------------------
+    document.getElementById('folioView').innerHTML = `<strong>Folio:</strong> ${folio}`;
 
-    document
-      .getElementById('folioView')
-      .innerHTML =
-      `<strong>Folio:</strong> ${folio}`;
-
-    document
-      .getElementById('resumenPedido')
-      .innerHTML =
-
-      `
+    document.getElementById('resumenPedido').innerHTML = `
       <strong>Cliente:</strong> ${nombre}<br>
       <strong>Teléfono:</strong> ${telefono}<br>
       <strong>Horario:</strong> ${hora}
-
       <hr>
-
       <pre>${pedido}</pre>
-      `;
+      <hr>
+      <h4 style="text-align: right; margin: 0; color: #2d3748;">Total: ${DATOS_CLIENTE.moneda}${totalCobrar}</h4>
+    `;
 
-    //--------------------------------------------------
-    // CAMBIAR DE PANTALLA
-    //--------------------------------------------------
-
-    const preview =
-      document.getElementById('previewPedido');
-
+    const preview = document.getElementById('previewPedido');
     preview.classList.remove('oculto');
     preview.classList.add('visible');
 
-    const formulario =
-      document.getElementById('pedidoForm');
-
+    const formulario = document.getElementById('pedidoForm');
     formulario.classList.remove('visible');
     formulario.classList.add('oculto');
-
 });
 
-
-//======================================================
-// BOTÓN ENVIAR A WHATSAPP
-//======================================================
-
-document
-  .getElementById('btnWhatsApp')
-  .addEventListener('click', function () {
-
+document.getElementById('btnWhatsApp').addEventListener('click', function () {
     if (urlWhatsApp) {
-
-      window.open(
-        urlWhatsApp,
-        '_blank'
-      );
-
+      window.open(urlWhatsApp, '_blank');
       setTimeout(() => {
-
-    document.getElementById('pedidoForm').reset();
-
-    document
-      .getElementById('previewPedido')
-      .classList.remove('visible');
-
-    document
-      .getElementById('previewPedido')
-      .classList.add('oculto');
-
-    document
-      .getElementById('pedidoForm')
-      .classList.remove('oculto');
-
-    document
-      .getElementById('pedidoForm')
-      .classList.add('visible');
-
-}, 500);
-
+        document.getElementById('pedidoForm').reset();
+        document.getElementById('previewPedido').classList.remove('visible');
+        document.getElementById('previewPedido').classList.add('oculto');
+        document.getElementById('pedidoForm').classList.remove('oculto');
+        document.getElementById('pedidoForm').classList.add('visible');
+      }, 500);
     }
-
 });
 
-
-//======================================================
-// BOTÓN EDITAR PEDIDO
-//======================================================
-
-document
-  .getElementById('editarPedido')
-  .addEventListener('click', function () {
-
-    //--------------------------------------------------
-    // OCULTAR PREVIEW
-    //--------------------------------------------------
-
-    const preview =
-      document.getElementById('previewPedido');
-
+document.getElementById('editarPedido').addEventListener('click', function () {
+    const preview = document.getElementById('previewPedido');
     preview.classList.remove('visible');
     preview.classList.add('oculto');
 
-    //--------------------------------------------------
-    // MOSTRAR FORMULARIO
-    //--------------------------------------------------
-
-    const formulario =
-      document.getElementById('pedidoForm');
-
+    const formulario = document.getElementById('pedidoForm');
     formulario.classList.remove('oculto');
     formulario.classList.add('visible');
-
 });

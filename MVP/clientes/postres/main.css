@@ -60,6 +60,7 @@ body {
     padding: var(--space-04) var(--space-03);
     font-family: var(--body-font);
     color: var(--color-01);
+    font-size: var(--font-size-2);
 }
 .logo {
     text-indent: -99999px;
@@ -70,6 +71,15 @@ body {
     height: 130px;
     margin: 0 auto;
 }
+h3{ 
+    color: var(--color-03);
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-size-3);
+    font-weight: bold;
+}
 h2{ 
     color: var(--color-03);
     display: block;
@@ -78,6 +88,7 @@ h2{
     text-align: center;
     font-size: var(--font-size-3);
     height: 80px;
+    font-weight: bold;
 }
 h2::after {
     content: "";
@@ -113,6 +124,7 @@ h2::before {
     padding: var(--space-03);
     margin-bottom: var(--space-04);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: var(--font-size-1);
 }
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||
 |||||||||||||||||Inputs|||||||||||||||||||||||||||||||
@@ -165,8 +177,8 @@ h2::before {
 }
 .mp-btnS {
     background-color: var(--color-02);
-    width: 50px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     border: solid 2px var(--color-02);
     border-radius: var(--space-01) 0 0 var(--space-01);
     color: var(--color-05);
@@ -175,8 +187,8 @@ h2::before {
 }
 .mp-btnE {
     background-color: var(--color-02);
-    width: 50px;
-    height: 48px;
+    width: 80px;
+    height: 60x;
     border: solid 2px var(--color-02);
     border-radius: 0 var(--space-01) var(--space-01) 0;
     color: var(--color-05);

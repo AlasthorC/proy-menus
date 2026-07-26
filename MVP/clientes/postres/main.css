@@ -71,6 +71,7 @@ body {
     margin: 0 auto;
 }
 h2{ 
+    color: var(--color-03);
     display: block;
     position: relative;
     width: 100%;

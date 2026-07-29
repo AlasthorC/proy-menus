@@ -1,7 +1,7 @@
 // menu.js - ARCHIVO DE CONFIGURACIÓN DEL CLIENTE
 const DATOS_CLIENTE = {
   nombreNegocio: "Postres Doña Mimis",
-  numeroWhatsApp: "525513694267",
+  numeroWhatsApp: "525539146809",
   tituloPedido: "NUEVO PEDIDO",
   moneda: "$",
   categorias: [

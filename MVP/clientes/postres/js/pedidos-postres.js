@@ -117,8 +117,7 @@ Horario: ${hora}
 --------------------------------
 PEDIDO
 ${pedido}--------------------------------
-
-Gracias por tu preferencia.`;
+`;
 
     urlWhatsApp = `https://wa.me/${DATOS_CLIENTE.numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 

@@ -177,7 +177,7 @@ h2::before {
 }
 .mp-btnS {
     background-color: var(--color-02);
-    width: 60px;
+    width: 32px;
     height: 60px;
     border: solid 2px var(--color-02);
     border-radius: var(--space-01) 0 0 var(--space-01);
@@ -187,7 +187,7 @@ h2::before {
 }
 .mp-btnE {
     background-color: var(--color-02);
-    width: 80px;
+    width: 32px;
     height: 60x;
     border: solid 2px var(--color-02);
     border-radius: 0 var(--space-01) var(--space-01) 0;

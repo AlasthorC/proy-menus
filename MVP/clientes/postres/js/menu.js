@@ -18,16 +18,16 @@ const DATOS_CLIENTE = {
       nombre: "Con fruta",
       productos: [
         { id: "fresas-crema", nombre: "Fresas con crema", precio: 30 },
-        { id: "ensalada-manzana", nombre: "Ensalada de manzana <br>(con pacitas y nuéz)", precio: 25 },
+        { id: "ensalada-manzana", nombre: "Ensalada de manzana con pacitas y nuéz", precio: 25 },
         { id: "duraznos-almibar", nombre: "Duraznos en almíbar", precio: 30 }
       ]
     },
     {
       nombre: "Otros",
       productos: [
-        { id: "pay-limon", nombre: "Pay de limón <br>(2 piezas)", precio: 25 },
-        { id: "pay-mango", nombre: "Pay de mango <br>(2 piezas)", precio: 25 },
-        { id: "hot-cakes", nombre: "Hot cakes con lechera <br>(2 piezas)", precio: 25 }
+        { id: "pay-limon", nombre: "Pay de limón 2 piezas", precio: 25 },
+        { id: "pay-mango", nombre: "Pay de mango 2 piezas", precio: 25 },
+        { id: "hot-cakes", nombre: "Hot cakes con lechera 2 piezas", precio: 25 }
       ]
     }
   ]

@@ -10,6 +10,7 @@ const DATOS_CLIENTE = {
       productos: [
         { id: "gel-fresa", nombreCorto: "Fresa", nombre: "Gelatina de fresa", precio: 25 },
         { id: "gel-limon", nombreCorto: "Limón", nombre: "Gelatina de limón", precio: 25 },
+        { id: "gel-groseya", nombreCorto: "Groseya", nombre: "Gelatina de groseya", precio: 25 },
         { id: "gel-uva", nombreCorto: "Uva", nombre: "Gelatina de uva", precio: 25 },
         { id: "gel-pina", nombreCorto: "Piña", nombre: "Gelatina de piña", precio: 25 },
         { id: "gel-mosaico", nombreCorto: "Mosaico", nombre: "Gelatina de mosaico", precio: 30 },

@@ -6,30 +6,28 @@ const DATOS_CLIENTE = {
   moneda: "$",
   categorias: [
     {
-      nombre: "Gelatinas",
+      nombre: "Gelatinas de agua",
       productos: [
-        { id: "gel-fresa", nombreCorto: "Fresa", nombre: "Gelatina de fresa", precio: 25 },
-        { id: "gel-limon", nombreCorto: "Limón", nombre: "Gelatina de limón", precio: 25 },
-        { id: "gel-groseya", nombreCorto: "Groseya", nombre: "Gelatina de groseya", precio: 25 },
-        { id: "gel-uva", nombreCorto: "Uva", nombre: "Gelatina de uva", precio: 25 },
-        { id: "gel-pina", nombreCorto: "Piña", nombre: "Gelatina de piña", precio: 25 },
-        { id: "gel-mosaico", nombreCorto: "Mosaico", nombre: "Gelatina de mosaico", precio: 30 },
-        { id: "flan", nombreCorto: "Flan", nombre: "Flan", precio: 35 }
+        { id: "gel-fresa", nombreCorto: "Fresa", nombre: "Gelatina de fresa", precio: 10 },
+        { id: "gel-limon", nombreCorto: "Limón", nombre: "Gelatina de limón", precio: 10 },
+        { id: "gel-uva", nombreCorto: "Uva", nombre: "Gelatina de uva", precio: 10 },
+        { id: "gel-pina", nombreCorto: "Piña", nombre: "Gelatina de piña", precio: 10 }
       ]
     },
     {
       nombre: "Con fruta",
       productos: [
-        { id: "pay-limon", nombre: "Pay de limón", precio: 40 },
-        { id: "pay-mango", nombre: "Pay de mango", precio: 45 },
-        { id: "fresas-crema", nombre: "Fresas con crema", precio: 50 }
+        { id: "fresas-crema", nombre: "Fresas con crema", precio: 30 },
+        { id: "ensalada-manzana", nombre: "Ensalada de manzana (con pacitas y nuéz)", precio: 25 },
+        { id: "duraznos-almibar", nombre: "Duraznos en almíbar", precio: 30 }
       ]
     },
     {
       nombre: "Otros",
       productos: [
-        { id: "huevito", nombre: "Huevito dulce", precio: 15 },
-        { id: "hot-cakes", nombre: "Hot cakes", precio: 40 }
+        { id: "pay-limon", nombre: "Pay de limón (2 piezas)", precio: 25 },
+        { id: "pay-mango", nombre: "Pay de mango (2 piezas)", precio: 25 },
+        { id: "hot-cakes", nombre: "Hot cakes con lechera (2 piezas)", precio: 25 }
       ]
     }
   ]

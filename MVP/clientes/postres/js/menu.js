@@ -18,7 +18,7 @@ const DATOS_CLIENTE = {
       nombre: "Con fruta",
       productos: [
         { id: "fresas-crema", nombre: "Fresas con crema", precio: 30 },
-        { id: "ensalada-manzana", nombre: "Ensalada de manzana (con pacitas y nuéz)", precio: 25 },
+        { id: "ensalada-manzana", nombre: "Ensalada de manzana <br>(con pacitas y nuéz)", precio: 25 },
         { id: "duraznos-almibar", nombre: "Duraznos en almíbar", precio: 30 }
       ]
     },

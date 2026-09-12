@@ -178,7 +178,7 @@ h2::before {
 .mp-btnS {
     background-color: var(--color-02);
     width: 32px;
-    height: 60px;
+    height: 100%;
     border: solid 2px var(--color-02);
     border-radius: var(--space-01) 0 0 var(--space-01);
     color: var(--color-05);
